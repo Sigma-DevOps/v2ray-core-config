@@ -1,0 +1,54 @@
+{
+  \"sendThrough\": \"0.0.0.0\",
+  \"mux\": {
+    \"enabled\": false,
+    \"concurrency\": 8
+  },
+  \"protocol\": \"vmess\",
+  \"settings\": {
+    \"vnext\": [
+      {
+        \"address\": \"$vmess_outbound_address\",
+        \"users\": [
+          {
+            \"id\": \"$vmess_outbound_uuid\",
+            \"alterId\": $vmess_outbound_alterid,
+            \"security\": \"$vmess_outbound_security\",
+            \"level\": $vmess_outbound_level
+          }
+        ],
+        \"port\": $vmess_outbound_port
+      }
+    ]
+  },
+  \"tag\": \"default_outbound\",
+  \"streamSettings\": {
+    \"wsSettings\": {
+      \"path\": \"$vmess_outbound_path\",
+      \"connectionReuse\": true
+    },
+    \"tcpSettings\": {
+      \"header\": {
+        \"type\": \"http\",
+        \"response\": {
+          \"status\": \"200\",
+          \"reason\": \"OK\",
+          \"headers\": {
+            \"Connection\": [\"keep-alive\"],
+            \"Transfer-Encoding\": [\"chunked\"],
+            \"Pragma\": \"no-cache\",
+            \"Content-Type\": [
+              \"application/octet-stream\",
+              \"application/x-msdownload\",
+              \"text/html\",
+              \"application/x-shockwave-flash\"
+            ]
+          },
+          \"version\": \"1.1\"
+        }
+      }
+    },
+    \"security\": \"none\",
+    \"network\": \"$vmess_outbound_transport\"
+  }
+}

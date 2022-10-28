@@ -1,0 +1,45 @@
+{
+  \"routing\": {
+    \"name\": \"all_to_main\",
+    \"domainStrategy\": \"AsIs\",
+    \"rules\": [
+      {
+        \"type\": \"field\",
+        \"outboundTag\": \"default_outbound\",
+        \"port\": \"0-65535\"
+      }
+    ]
+  },
+  \"inbounds\": [
+    {
+      \"listen\": \"0.0.0.0\",
+      \"protocol\": \"socks\",
+      \"settings\": {
+        \"ip\": \"127.0.0.1\",
+        \"auth\": \"noauth\",
+        \"udp\": true
+      },
+      \"tag\": \"socksinbound\",
+      \"port\": $socks_proxy_listen_port
+    },
+    {
+      \"listen\": \"0.0.0.0\",
+      \"protocol\": \"http\",
+      \"settings\": {
+        \"timeout\": 0
+      },
+      \"tag\": \"httpinbound\",
+      \"port\": $http_proxy_listen_port
+    },
+    $vmess_inbound_config
+  ],
+  \"dns\": {
+    \"servers\": [\"localhost\"]
+  },
+  \"log\": {
+    \"loglevel\": \"warning\"
+  },
+  \"outbounds\": [
+    $outbound_config
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  \"listen\": \"$vmess_inbound_listen_address\",
+  \"port\": $vmess_inbound_listen_port,
+  \"protocol\": \"vmess\",
+  \"settings\": {
+    \"clients\": [
+      {
+        \"id\": \"$vmess_inbound_uuid\",
+        \"alterId\": $vmess_inbound_alterid
+      }
+    ],
+    \"disableInsecureEncryption\": true
+  },
+  \"streamSettings\": {
+    \"network\": \"ws\",
+    \"security\": \"none\",
+    \"wsSettings\": {
+      \"path\": \"$vmess_inbound_path\",
+      \"headers\": {}
+    }
+  },
+  \"tag\": \"inbound-80\",
+  \"sniffing\": {
+    \"enabled\": true,
+    \"destOverride\": [\"http\", \"tls\"]
+  }
+}
