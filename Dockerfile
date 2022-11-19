@@ -31,3 +31,4 @@ RUN sh build_config.sh
 RUN cp /root/config.json /etc/v2ray/config.json
 RUN cat ./config.json
 
+CMD ["run"]
