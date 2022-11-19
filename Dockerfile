@@ -12,7 +12,6 @@ ARG vmess_outbound_transport="ws"
 ARG vmess_outbound_path="/"
 
 ARG vmess_inbound_listen_address=0.0.0.0
-ARG vmess_inbound_listen_port=80
 ARG vmess_inbound_uuid="2135915d-9f55-46e9-8379-efe79a276257"
 ARG vmess_inbound_alterid=0
 ARG vmess_inbound_path="/"
